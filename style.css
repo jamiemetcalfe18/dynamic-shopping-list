@@ -1,0 +1,62 @@
+/* ORIGINAL STYLE*/ 
+
+li {
+    margin-bottom: 10px;
+  }
+
+li button {
+  font-size: 20px;
+  margin-left: 20px;
+  color: #666;
+}
+
+
+/* ADD YOUR OWN STYLE RULES BELOW! YOU MAY ALSO CHANGE THE ABOVE TOO */
+/* font-family: 'Lobster Two', cursive;
+font-family: 'Open Sans', sans-serif; */
+
+body {
+  background-color: lightblue;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Lobster Two', cursive;
+  font-size: 100px;
+}
+
+img {
+  width: 200px;
+}
+
+button {
+  background-color: darkblue;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 5px 2px teal;
+  font-size: 20px;
+}
+
+ul {
+  list-style-type: none;
+  border-top: 1px solid black;
+  padding-top: 10px;
+}
+
+.container {
+  border-bottom: 5px solid black;
+}
+
+ul {
+  border-top: 5px solid black;
+  padding-top: 10px; /* add some space between the input and the list */
+}
+
+div {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.list-item {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 50px;
+}
