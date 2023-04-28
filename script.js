@@ -1,49 +1,78 @@
-// Get references to the list, input, and button elements
+//jamie metcalfe
 window.onload = function() {
   const list = document.getElementById("list");
   const input = document.getElementById("item");
   const button = document.getElementById("button");
 
-  // Function to add a new item to the list
+  // load the shopping list from localStorage if it exists
+  const savedList = JSON.parse(localStorage.getItem("shoppingList")) || [];
+
+  // function to add a new item and save to localStorage
   function addItem() {
-  // Get the value of the input element and store it in a variable
-  const newItem = input.value;
+    const newItem = input.value.trim();
 
     if (!newItem) {
       console.warn("No item entered.");
       return;
     }
 
-  // Clear the input element
     input.value = '';
 
-  // Create a new list item, span, and button element
     const listItem = document.createElement("li");
     const itemSpan = document.createElement("span");
-      itemSpan.classList.add("list-item");
+    itemSpan.classList.add("list-item");
     const deleteButton = document.createElement("button");
 
-  // Set the text content of the span and button elements
     itemSpan.textContent = newItem;
     deleteButton.textContent = "Delete";
 
-  // Append the span and button elements to the list item
     listItem.appendChild(itemSpan);
     listItem.appendChild(deleteButton);
 
-  // Append the list item to the list
     list.appendChild(listItem);
 
-  // Add event listener to the delete button to remove its parent li element
     deleteButton.addEventListener("click", function () {
       listItem.remove();
+      saveList();
     });
 
-  // Focus on the input element
+    saveList();
     input.focus();
   }
 
-// Add event listener to the button to trigger addItem function when clicked
+  // function to save the current list to localStorage
+  function saveList() {
+    const items = Array.from(list.children).map(item => item.firstChild.textContent);
+    localStorage.setItem("shoppingList", JSON.stringify(items));
+  }
+
+  // function to load the  list into the web app
+  function loadList() {
+    for (const item of savedList) {
+      const listItem = document.createElement("li");
+      const itemSpan = document.createElement("span");
+      itemSpan.classList.add("list-item");
+      const deleteButton = document.createElement("button");
+
+      itemSpan.textContent = item;
+      deleteButton.textContent = "Delete";
+
+      listItem.appendChild(itemSpan);
+      listItem.appendChild(deleteButton);
+
+      list.appendChild(listItem);
+
+      deleteButton.addEventListener("click", function () {
+        listItem.remove();
+        saveList();
+      });
+    }
+  }
+
+  // load the saved list into the web app on startup/refesh
+  loadList();
+
+  // add event listener to the button to trigger addItem function 
   if (button) {
     button.addEventListener("click", addItem);
   } else {
